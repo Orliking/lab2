@@ -1,10 +1,23 @@
 package lab1;
 
+import java.util.Scanner;
+
 public class ExamService {
     public static void printResults() {
         System.out.println("\nИнформация экзаменов:");
         for (int i = 0; i < results.length; i++) {
             System.out.println(results[i]);
+        }
+    }
+
+    public static void fillResults() {
+        System.out.println("Введите количество записей: ");
+        int n = (new Scanner(System.in)).nextInt();
+        results = new ExamResult[n];
+        System.out.println("Введите информацию о сдаче экзаменов: ");
+        for (int i = 0; i < results.length; i++) {
+            System.out.println("Запись " + (i + 1) + ":");
+            results[i] = new ExamResult();
         }
     }
 
