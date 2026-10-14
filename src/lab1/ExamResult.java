@@ -143,4 +143,56 @@ public class ExamResult {
         System.out.println();
     }
 
+    public static void taskC() {
+        String[] subjects = new String[results.length];
+        double[] sums = new double[results.length];
+        int[] counts = new int[results.length];
+        int сounter = 0;
+
+        for (int i = 0; i < results.length; i++) {
+            String subj = results[i].getSubject();
+            int index = -1;
+            // ищем предмет в уже собранных
+            for (int j = 0; j < сounter; j++) {
+                if (subjects[j].equalsIgnoreCase(subj)) {
+                    index = j;
+                    break;
+                }
+            }
+            if (index == -1) {
+                subjects[сounter] = subj;
+                sums[сounter] = results[i].getGrade();
+                counts[сounter] = 1;
+                сounter++;
+            } else {
+                sums[index] += results[i].getGrade();
+                counts[index]++;
+            }
+        }
+
+        double[] averages = new double[сounter];
+        for (int i = 0; i < сounter; i++) {
+            averages[i] = sums[i] / counts[i];
+        }
+
+        for (int i = 0; i < сounter - 1; i++) {
+            for (int j = 0; j < сounter - 1 - i; j++) {
+                if (averages[j] < averages[j + 1]) {
+                    double tempAvg = averages[j];
+                    averages[j] = averages[j + 1];
+                    averages[j + 1] = tempAvg;
+
+                    String tempSubj = subjects[j];
+                    subjects[j] = subjects[j + 1];
+                    subjects[j + 1] = tempSubj;
+                }
+            }
+        }
+
+        // 4. Вывод результата
+        System.out.println("\nПредметы по убыванию среднего балла:");
+        for (int i = 0; i < сounter; i++) {
+            System.out.printf("Предмет: %-15s | Средний балл: %.2f%n", subjects[i], averages[i]);
+        }
+    }
 }
