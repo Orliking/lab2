@@ -3,6 +3,21 @@ package lab1;
 import java.util.Scanner;
 
 public class ExamService {
+    private static ExamResult[] results;
+
+    static {
+        results = new ExamResult[]{
+                new ExamResult("Информатика", "101", "11.06.18", "Иванов", 2),
+                new ExamResult("Информатика", "101", "11.06.18", "Петров", 4),
+                new ExamResult("Информатика", "102", "12.06.18", "Сидоров", 2),
+                new ExamResult("Информатика", "103", "11.06.18", "Кузнецов", 5),
+                new ExamResult("Математика", "101", "10.06.18", "Иванов", 3),
+                new ExamResult("Математика", "102", "10.06.18", "Сидоров", 4),
+                new ExamResult("Физика", "101", "15.06.18", "Петров", 5),
+                new ExamResult("Физика", "103", "15.06.18", "Кузнецов", 4)
+        };
+    }
+
     public static void printResults() {
         System.out.println("\nИнформация экзаменов:");
         for (int i = 0; i < results.length; i++) {
